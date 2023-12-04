@@ -1,2 +1,5 @@
+com/gabriel/purchaseTransaction/PurchaseTransactionRepository.class
+com/gabriel/purchaseTransaction/PurchaseTransactionService.class
+com/gabriel/purchaseTransaction/PurchaseTransactionController.class
 com/gabriel/purchaseTransaction/PurchaseTransactionApplication.class
-com/gabriel/transaction/model/PurchaseTransaction.class
+com/gabriel/purchaseTransaction/PurchaseTransaction.class

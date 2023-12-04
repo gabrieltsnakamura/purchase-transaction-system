@@ -1,2 +1,5 @@
 /Users/gabrielnakamura/Documents/personal_projects/purchase-transaction-system/src/main/java/com/gabriel/purchaseTransaction/PurchaseTransactionApplication.java
-/Users/gabrielnakamura/Documents/personal_projects/purchase-transaction-system/src/main/java/com/gabriel/transaction/model/PurchaseTransaction.java
+/Users/gabrielnakamura/Documents/personal_projects/purchase-transaction-system/src/main/java/com/gabriel/purchaseTransaction/PurchaseTransactionService.java
+/Users/gabrielnakamura/Documents/personal_projects/purchase-transaction-system/src/main/java/com/gabriel/purchaseTransaction/PurchaseTransactionController.java
+/Users/gabrielnakamura/Documents/personal_projects/purchase-transaction-system/src/main/java/com/gabriel/purchaseTransaction/PurchaseTransactionRepository.java
+/Users/gabrielnakamura/Documents/personal_projects/purchase-transaction-system/src/main/java/com/gabriel/purchaseTransaction/PurchaseTransaction.java
