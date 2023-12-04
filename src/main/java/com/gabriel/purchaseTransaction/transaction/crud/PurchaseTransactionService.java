@@ -1,10 +1,11 @@
-package com.gabriel.purchaseTransaction;
+package com.gabriel.purchaseTransaction.transaction.crud;
 import com.gabriel.purchaseTransaction.exception.TransactionNotFoundException;
+import com.gabriel.purchaseTransaction.exchange.CurrencyExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,11 +14,11 @@ public class PurchaseTransactionService {
     private final PurchaseTransactionRepository repository;
 
     @Autowired
-    public PurchaseTransactionService(PurchaseTransactionRepository repository) {
+    public PurchaseTransactionService(PurchaseTransactionRepository repository, CurrencyExchangeService currencyExchangeService) {
         this.repository = repository;
     }
 
-    public PurchaseTransaction saveTransaction(String description, Date transactionDate, BigDecimal amount) {
+    public PurchaseTransaction saveTransaction(String description, String transactionDate, BigDecimal amount) {
         PurchaseTransaction transaction = new PurchaseTransaction(description, transactionDate, amount);
         return repository.save(transaction);
     }
@@ -31,7 +32,7 @@ public class PurchaseTransactionService {
         repository.delete(transaction);
     }
 
-    public PurchaseTransaction updateTransactionById(UUID id, String description, Date transactionDate, BigDecimal amount) throws TransactionNotFoundException {
+    public PurchaseTransaction updateTransactionById(UUID id, String description, String transactionDate, BigDecimal amount) throws TransactionNotFoundException {
         PurchaseTransaction transaction = getTransactionById(id);
         transaction.setDescription(description);
         transaction.setTransactionDate(transactionDate);

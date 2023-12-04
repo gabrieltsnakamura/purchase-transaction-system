@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 @ControllerAdvice
 public class CustomExceptionHandler {
 
@@ -24,5 +21,19 @@ public class CustomExceptionHandler {
             errors.add(detailedError);
         });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(TransactionNotFoundException.class)
+    public ResponseEntity<Error> handleTransactionNotFoundException(TransactionNotFoundException ex) {
+        Error error = new Error();
+        error.setMessage(ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoExchangeRecordFound.class)
+    public ResponseEntity<Error> handleNoSuchElementException(NoExchangeRecordFound ex) {
+        Error error = new Error();
+        error.setMessage(ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,9 +1,10 @@
-package com.gabriel.purchaseTransaction;
+package com.gabriel.purchaseTransaction.transaction.crud;
 
+import com.gabriel.purchaseTransaction.validation.ValidTime;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -17,18 +18,21 @@ public class PurchaseTransaction {
     private String description;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date transactionDate;
+    @ValidTime()
+    private String transactionDate;
 
     @NotNull
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=10, fraction=2)
     private BigDecimal amount;
 
+    private BigDecimal exchangeRate;
+    private BigDecimal convertedAmount;
+
     public PurchaseTransaction() {
     }
 
-    public PurchaseTransaction(String description, Date transactionDate, BigDecimal amount) {
+    public PurchaseTransaction(String description, String transactionDate, BigDecimal amount) {
         this.id = UUID.randomUUID();
         this.description = description;
         this.transactionDate = transactionDate;
@@ -54,11 +58,11 @@ public class PurchaseTransaction {
         this.description = description;
     }
 
-    public Date getTransactionDate() {
+    public String getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Date transactionDate) {
+    public void setTransactionDate(String transactionDate) {
         this.transactionDate = transactionDate;
     }
 
@@ -68,5 +72,21 @@ public class PurchaseTransaction {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public BigDecimal getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(BigDecimal exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
+    public BigDecimal getConvertedAmount() {
+        return convertedAmount;
+    }
+
+    public void setConvertedAmount(BigDecimal convertedAmount) {
+        this.convertedAmount = convertedAmount;
     }
 }

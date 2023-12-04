@@ -1,4 +1,4 @@
-package com.gabriel.purchaseTransaction;
+package com.gabriel.purchaseTransaction.transaction.crud;
 
 import com.gabriel.purchaseTransaction.exception.TransactionNotFoundException;
 import jakarta.validation.Valid;
