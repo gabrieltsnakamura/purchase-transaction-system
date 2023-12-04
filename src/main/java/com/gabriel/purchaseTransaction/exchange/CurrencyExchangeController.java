@@ -17,7 +17,6 @@ public class CurrencyExchangeController {
 
     private final CurrencyExchangeService service;
 
-    @Autowired
     public CurrencyExchangeController(CurrencyExchangeService service) {
         this.service = service;
     }

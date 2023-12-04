@@ -14,7 +14,6 @@ public class PurchaseTransactionController {
 
     private final PurchaseTransactionService service;
 
-    @Autowired
     public PurchaseTransactionController(PurchaseTransactionService service) {
         this.service = service;
     }

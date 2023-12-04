@@ -13,7 +13,6 @@ import java.util.UUID;
 public class PurchaseTransactionService {
     private final PurchaseTransactionRepository repository;
 
-    @Autowired
     public PurchaseTransactionService(PurchaseTransactionRepository repository, CurrencyExchangeService currencyExchangeService) {
         this.repository = repository;
     }

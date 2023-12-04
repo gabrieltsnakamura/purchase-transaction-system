@@ -5,7 +5,7 @@ import com.gabriel.purchaseTransaction.transaction.crud.PurchaseTransaction;
 import com.gabriel.purchaseTransaction.transaction.crud.PurchaseTransactionRepository;
 import com.gabriel.purchaseTransaction.exception.TransactionNotFoundException;
 import com.gabriel.purchaseTransaction.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,11 +18,11 @@ import java.util.UUID;
 
 @Service
 public class CurrencyExchangeService {
-
+    @Value("${exchange.api.url}")
+    private String EXCHANGE_API_URL;
     private final PurchaseTransactionRepository repository;
     private final RestTemplate restTemplate;
 
-@Autowired
     public CurrencyExchangeService(PurchaseTransactionRepository repository, RestTemplate restTemplate) throws NoExchangeRecordFound {
         this.repository = repository;
         this.restTemplate = restTemplate;
@@ -45,8 +45,7 @@ public class CurrencyExchangeService {
     }
 
     public List<Data> getExchangeData(String currencyCode, String date) {
-        String url = "https://api.fiscaldata.treasury.gov/services/api/fiscal_service" +
-                "/v1/accounting/od/rates_of_exchange"
+        String url = EXCHANGE_API_URL
                 + "?filter=record_date:lte:" + DateUtils.formatDate(LocalDateTime.parse(date), "yyyy-MM-dd")
                 + ",currency:eq:" + currencyCode;
         Exchange response = restTemplate.getForObject(url, Exchange.class);
