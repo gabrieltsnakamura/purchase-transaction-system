@@ -5,6 +5,8 @@ import com.gabriel.purchaseTransaction.transaction.crud.PurchaseTransaction;
 import com.gabriel.purchaseTransaction.transaction.crud.PurchaseTransactionRepository;
 import com.gabriel.purchaseTransaction.exception.TransactionNotFoundException;
 import com.gabriel.purchaseTransaction.utils.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -22,6 +24,9 @@ public class CurrencyExchangeService {
     private String EXCHANGE_API_URL;
     private final PurchaseTransactionRepository repository;
     private final RestTemplate restTemplate;
+
+    private static final Logger logger = LoggerFactory.getLogger(CurrencyExchangeService.class);
+
 
     public CurrencyExchangeService(PurchaseTransactionRepository repository, RestTemplate restTemplate) throws NoExchangeRecordFound {
         this.repository = repository;
@@ -48,7 +53,9 @@ public class CurrencyExchangeService {
         String url = EXCHANGE_API_URL
                 + "?filter=record_date:lte:" + DateUtils.formatDate(LocalDateTime.parse(date), "yyyy-MM-dd")
                 + ",currency:eq:" + currencyCode;
+        logger.info("Calling exchange API: url={}", url);
         Exchange response = restTemplate.getForObject(url, Exchange.class);
+        logger.info("Exchange API response: {}", response);
         return response.getData();
     }
 }

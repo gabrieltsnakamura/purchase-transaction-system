@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
@@ -16,6 +18,8 @@ import java.util.UUID;
 public class CurrencyExchangeController {
 
     private final CurrencyExchangeService service;
+    private static final Logger logger = LoggerFactory.getLogger(CurrencyExchangeService.class);
+
 
     public CurrencyExchangeController(CurrencyExchangeService service) {
         this.service = service;
@@ -23,6 +27,7 @@ public class CurrencyExchangeController {
 
     @GetMapping("/transaction/{id}/{currencyCode}")
     public PurchaseTransaction getTransactionInCurrency(@PathVariable UUID id, @PathVariable String currencyCode) throws TransactionNotFoundException, NoExchangeRecordFound {
+        logger.info("Getting transaction in currency: id={}, currencyCode={}", id, currencyCode);
         return service.getTransactionInCurrency(id, currencyCode);
     }
 }
