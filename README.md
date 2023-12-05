@@ -134,7 +134,6 @@ Response body:
 - **amount**: A number that represents the amount of the transaction.
 - **exchangeRate**: A string that represents the currency of the converted amount.
 - **convertedAmount**: A number that represents the converted amount of the transaction.
-```
 
 ### PUT /transaction/{id}
 
