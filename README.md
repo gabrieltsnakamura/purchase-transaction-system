@@ -168,15 +168,4 @@ Response body:
 
 Deletes a purchase transaction by ID.
 
-Response body:
-
-```json
-{
-    "id": "string",
-    "description": "string",
-    "transactionDate": "string",
-    "amount": "number"
-}
-```
-
 - **id**: A string that represents the ID of the transaction.
